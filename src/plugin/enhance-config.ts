@@ -13,6 +13,8 @@ interface DiscoveredProvider {
   models: Record<string, any>
 }
 
+const DEFAULT_MODEL_INFO_ENDPOINT = '/v1/model/info'
+
 function hasUsableNumber(value: unknown): value is number {
   return typeof value === 'number' && Number.isFinite(value) && value > 0
 }
@@ -131,8 +133,8 @@ export async function enhanceConfig(
       const p = providerConfig as any
       const providerDiscoveryConfig = p.options?.modelsDiscovery ?? {}
       const modelsEndpoint = providerDiscoveryConfig.endpoint ?? '/v1/models'
-      const modelInfoEndpoint = providerDiscoveryConfig.modelInfoEndpoint
-      const filterNonChat = providerDiscoveryConfig.filterNonChat === true
+      const modelInfoEndpoint = providerDiscoveryConfig.modelInfoEndpoint ?? DEFAULT_MODEL_INFO_ENDPOINT
+      const filterNonChat = providerDiscoveryConfig.filterNonChat !== false
       const forceDiscoveryEnabled = providerDiscoveryConfig.enabled === true
 
       if (!forceDiscoveryEnabled && !canDiscoverModels(p)) {
@@ -177,7 +179,7 @@ export async function enhanceConfig(
         const modelInfoDiscovery = await discoverModelInfoFromProvider(baseURL, apiKey, modelInfoEndpoint)
         if (modelInfoDiscovery.ok) {
           modelInfoById = buildModelInfoMap(modelInfoDiscovery.entries)
-        } else {
+        } else if (providerDiscoveryConfig.modelInfoEndpoint) {
           logger.warn('Provider model info discovery failed', {
             provider: providerName,
             baseURL,

@@ -145,8 +145,11 @@ describe('ModelDiscovery Plugin', () => {
 
       expect(config.provider?.ollama?.models).toBeDefined()
       expect(Object.keys(config.provider.ollama.models).length).toBe(2)
-      expect(mockFetch).toHaveBeenCalledTimes(1)
-      expect(mockFetch).toHaveBeenCalledWith('http://127.0.0.1:11434/v1/models', expect.objectContaining({
+      expect(mockFetch).toHaveBeenCalledTimes(2)
+      expect(mockFetch).toHaveBeenNthCalledWith(1, 'http://127.0.0.1:11434/v1/models', expect.objectContaining({
+        method: 'GET'
+      }))
+      expect(mockFetch).toHaveBeenNthCalledWith(2, 'http://127.0.0.1:11434/v1/model/info', expect.objectContaining({
         method: 'GET'
       }))
     })
@@ -180,8 +183,11 @@ describe('ModelDiscovery Plugin', () => {
       await pluginHooks.config(config)
 
       expect(config.provider.ollama.models['custom-model']).toBeDefined()
-      expect(mockFetch).toHaveBeenCalledTimes(1)
-      expect(mockFetch).toHaveBeenCalledWith('http://127.0.0.1:11434/api/models', expect.objectContaining({
+      expect(mockFetch).toHaveBeenCalledTimes(2)
+      expect(mockFetch).toHaveBeenNthCalledWith(1, 'http://127.0.0.1:11434/api/models', expect.objectContaining({
+        method: 'GET'
+      }))
+      expect(mockFetch).toHaveBeenNthCalledWith(2, 'http://127.0.0.1:11434/v1/model/info', expect.objectContaining({
         method: 'GET'
       }))
     })
@@ -252,10 +258,7 @@ describe('ModelDiscovery Plugin', () => {
             name: 'LiteLLM',
             options: {
               baseURL: 'http://127.0.0.1:4000/v1',
-              modelsDiscovery: {
-                modelInfoEndpoint: '/v1/model/info',
-                filterNonChat: true
-              }
+              modelsDiscovery: {}
             },
             models: {}
           }
