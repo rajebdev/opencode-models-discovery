@@ -49,7 +49,7 @@
     "xdg-basedir": "^5.1.0"
   },
   "peerDependencies": {
-    "@opencode-ai/plugin": ">=1.0.0"
+    "@opencode-ai/plugin": ">=1.4.0"
   },
   "devDependencies": {
     "@opencode-ai/plugin": "^1.0.166",

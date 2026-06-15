@@ -16,7 +16,7 @@
         "vitest": "^4.0.16",
       },
       "peerDependencies": {
-        "@opencode-ai/plugin": ">=1.0.0",
+        "@opencode-ai/plugin": ">=1.4.0",
       },
     },
   },
