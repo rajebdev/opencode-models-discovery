@@ -14,7 +14,7 @@ The plugin configuration is placed in the `plugin` array using tuple format `[
 ```json
 {
   "plugin": [
-    ["opencode-models-discovery", {
+    ["opencode-models-discovery-v2", {
       "providers": {
         "include": [],
         "exclude": []
@@ -72,7 +72,7 @@ Configure both `modelInfoEndpoint` and `modelInfoFormat` to enable it for a prov
 
 ```json
 {
-  "plugin": ["opencode-models-discovery"],
+  "plugin": ["opencode-models-discovery-v2"],
   "provider": {
     "litellm": {
       "npm": "@ai-sdk/openai-compatible",
@@ -126,7 +126,7 @@ For providers with custom metadata paths or non-standard behavior:
 ```json
 {
   "plugin": [
-    ["opencode-models-discovery", {
+    ["opencode-models-discovery-v2", {
       "discovery": {
         "enabled": false
       }
@@ -234,7 +234,7 @@ Control which providers are discovered:
 ```json
 {
   "plugin": [
-    ["opencode-models-discovery", {
+    ["opencode-models-discovery-v2", {
       "providers": {
         "include": ["ollama"],
         "exclude": ["lmstudio"]
@@ -258,7 +258,7 @@ Regex filtering only applies to auto-discovered models. Models already explicitl
 ```json
 {
   "plugin": [
-    ["opencode-models-discovery", {
+    ["opencode-models-discovery-v2", {
       "models": {
         "includeRegex": ["^qwen/", "gpt-4"],
         "excludeRegex": ["embedding", "test"]

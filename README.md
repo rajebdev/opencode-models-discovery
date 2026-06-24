@@ -1,7 +1,7 @@
-# opencode-models-discovery
+# opencode-models-discovery-v2
 
-[![npm version](https://img.shields.io/npm/v/opencode-models-discovery.svg?color=blue)](https://www.npmjs.com/package/opencode-models-discovery)
-[![npm downloads](https://img.shields.io/npm/dt/opencode-models-discovery.svg)](https://www.npmjs.com/package/opencode-models-discovery)
+[![npm version](https://img.shields.io/npm/v/opencode-models-discovery-v2.svg?color=blue)](https://www.npmjs.com/package/opencode-models-discovery-v2)
+[![npm downloads](https://img.shields.io/npm/dt/opencode-models-discovery-v2.svg)](https://www.npmjs.com/package/opencode-models-discovery-v2)
 [![release](https://github.com/yuhp/opencode-models-discovery/actions/workflows/release.yml/badge.svg)](https://github.com/yuhp/opencode-models-discovery/actions/workflows/release.yml)
 [![license](https://img.shields.io/github/license/yuhp/opencode-models-discovery)](https://github.com/yuhp/opencode-models-discovery/blob/main/LICENSE)
 [![OpenCode](https://img.shields.io/badge/OpenCode-%3E%3D1.4.0-blueviolet)](https://opencode.ai)
@@ -23,9 +23,9 @@ Originally inspired by [opencode-lmstudio](https://github.com/nicktasios/opencod
 ## Installation
 
 ```bash
-npm install opencode-models-discovery
+npm install opencode-models-discovery-v2
 # or
-bun add opencode-models-discovery
+bun add opencode-models-discovery-v2
 ```
 
 ## Quick Start
@@ -36,7 +36,7 @@ Add the plugin to your `opencode.json`:
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "opencode-models-discovery@latest"
+    "opencode-models-discovery-v2@latest"
   ],
   "provider": {
     "lmstudio": {
@@ -101,7 +101,7 @@ This keeps the same provider configuration model while allowing the plugin to wo
 
 ## Logging
 
-When available, the plugin writes logs through OpenCode's structured server log API via `client.app.log(...)` using the service name `opencode-models-discovery`.
+When available, the plugin writes logs through OpenCode's structured server log API via `client.app.log(...)` using the service name `opencode-models-discovery-v2`.
 
 If structured logging is unavailable in the runtime, the plugin falls back to prefixed `console.*` output. Key log categories are emitted through metadata such as `plugin`, `config`, `discovery`, `event`, and `filtering` to make local debugging easier with `opencode --print-logs`.
 

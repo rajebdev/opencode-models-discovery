@@ -2,7 +2,7 @@
 
 ## Refresh Plugin Cache After Upgrade
 
-If you upgrade `opencode-models-discovery` and OpenCode still behaves like it is using an older version, refresh the OpenCode plugin cache and restart OpenCode.
+If you upgrade `opencode-models-discovery-v2` and OpenCode still behaves like it is using an older version, refresh the OpenCode plugin cache and restart OpenCode.
 
 This is worth checking when:
 

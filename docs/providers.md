@@ -63,7 +63,7 @@ A provider is considered discoverable if it matches any detection signal above, 
 
 ```json
 {
-  "plugin": ["opencode-models-discovery"],
+  "plugin": ["opencode-models-discovery-v2"],
   "provider": {
     "ollama": {
       "npm": "@ai-sdk/openai-compatible",
@@ -80,7 +80,7 @@ A provider is considered discoverable if it matches any detection signal above, 
 
 ```json
 {
-  "plugin": ["opencode-models-discovery"],
+  "plugin": ["opencode-models-discovery-v2"],
   "provider": {
     "ollama-anthropic": {
       "npm": "@ai-sdk/anthropic",
@@ -121,7 +121,7 @@ A provider is considered discoverable if it matches any detection signal above, 
 
 ```json
 {
-  "plugin": ["opencode-models-discovery"],
+  "plugin": ["opencode-models-discovery-v2"],
   "provider": {
     "deepseek": {
       "npm": "@ai-sdk/openai-compatible",
