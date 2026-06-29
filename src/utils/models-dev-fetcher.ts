@@ -112,13 +112,24 @@ export function lookupModelsDevData(
   
   // Level 3: Model name only (ignore provider)
   const modelNameLower = litellmModel.toLowerCase()
-  const modelNameNormalized = modelNameLower.replace(/\./g, '-')
   
   for (const [key, value] of cache.entries()) {
     const devModel = key.split('/').pop()!.toLowerCase()
     
-    if (modelNameLower === devModel || modelNameNormalized === devModel) {
+    if (modelNameLower === devModel) {
       return value
+    }
+  }
+  
+  // Level 3.5: Normalize dots to dashes for version numbers
+  if (modelNameLower.includes('.')) {
+    const modelNameNormalized = modelNameLower.replace(/\./g, '-')
+    for (const [key, value] of cache.entries()) {
+      const devModel = key.split('/').pop()!.toLowerCase()
+      
+      if (modelNameNormalized === devModel) {
+        return value
+      }
     }
   }
   
