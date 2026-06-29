@@ -136,10 +136,11 @@ export function lookupModelsDevData(
   // Level 4: Prefix-based matching with score
   let bestMatch: ModelsDevModel | undefined
   let bestScore = 0
+  const modelNameForScoring = modelNameLower.includes('.') ? modelNameLower.replace(/\./g, '-') : modelNameLower
   
   for (const [key, value] of cache.entries()) {
     const devModel = key.split('/').pop()!.toLowerCase()
-    const score = calculatePrefixScore(modelNameLower, devModel)
+    const score = calculatePrefixScore(modelNameForScoring, devModel)
     
     if (score > bestScore) {
       bestScore = score
