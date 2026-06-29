@@ -308,7 +308,16 @@ export async function enhanceConfig(
             output: modelsDevData?.limit?.output || 32000
           }
 
-          modelInfoEnricher?.applyModelInfo(modelConfig, model.id)
+          if (modelInfoEnricher) {
+            modelInfoEnricher.applyModelInfo(modelConfig, model.id)
+          } else if (modelsDevData) {
+            if (modelsDevData.reasoning !== undefined) modelConfig.reasoning = modelsDevData.reasoning
+            if (modelsDevData.family !== undefined) modelConfig.family = modelsDevData.family
+            if (modelsDevData.attachment !== undefined) modelConfig.attachment = modelsDevData.attachment
+            if (modelsDevData.tool_call !== undefined) modelConfig.tool_call = modelsDevData.tool_call
+            if (modelsDevData.structured_output !== undefined) modelConfig.structured_output = modelsDevData.structured_output
+            if (modelsDevData.modalities !== undefined) modelConfig.modalities = modelsDevData.modalities
+          }
 
           discoveredModels[modelKey] = modelConfig
         }
