@@ -90,10 +90,10 @@ export function lookupModelsDevData(
   // Level 1: Exact match
   if (cache.has(modelId)) return cache.get(modelId)
   
-  // Parse LiteLLM model ID
+  // Parse model ID: last part = model, second-to-last = provider
   const parts = modelId.split('/')
-  const litellmProvider = parts.length > 1 ? parts[0] : null
-  const litellmModel = parts.length > 1 ? parts[1] : parts[0]
+  const litellmModel = parts[parts.length - 1]
+  const litellmProvider = parts.length >= 2 ? parts[parts.length - 2] : null
   
   // Level 2: Provider + Model match
   if (litellmProvider) {
