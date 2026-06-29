@@ -5,8 +5,8 @@ import type { OpenAIModel } from '../types'
  */
 export function extractModelOwner(modelId: string): string | undefined {
   const parts = modelId.split('/')
-  if (parts.length > 1) {
-    return parts[0]
+  if (parts.length >= 2) {
+    return parts[parts.length - 2]
   }
   return undefined
 }
@@ -18,9 +18,8 @@ export function extractModelOwner(modelId: string): string | undefined {
 export function formatModelName(model: OpenAIModel): string {
   const { id } = model
   
-  // Extract parts from model ID
   const parts = id.split('/')
-  const modelPart = parts.length > 1 ? parts[1] : parts[0]
+  const modelPart = parts[parts.length - 1]
   
   // Common acronyms that should be uppercase
   const acronyms = new Set(['gpt', 'oss', 'api', 'gguf', 'ggml', 'nomic', 'vl', 'it', 'mlx'])

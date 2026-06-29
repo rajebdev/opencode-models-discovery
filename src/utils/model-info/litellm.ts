@@ -34,8 +34,8 @@ function buildModelInfoMap(entries: LiteLLMModelInfoEntry[]): Map<string, LiteLL
     if (entry.litellm_params?.model) {
       keys.add(entry.litellm_params.model)
       const parts = entry.litellm_params.model.split('/')
-      if (parts.length > 1) keys.add(parts.slice(1).join('/'))
       keys.add(parts[parts.length - 1])
+      if (parts.length >= 2) keys.add(parts[parts.length - 2] + '/' + parts[parts.length - 1])
     }
 
     for (const key of keys) {

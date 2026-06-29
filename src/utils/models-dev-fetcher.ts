@@ -99,9 +99,9 @@ export function lookupModelsDevData(
   if (litellmProvider) {
     for (const [key, value] of cache.entries()) {
       const devParts = key.split('/')
-      if (devParts.length > 1) {
-        const devProvider = devParts[0]
-        const devModel = devParts[1]
+      if (devParts.length >= 2) {
+        const devProvider = devParts[devParts.length - 2]
+        const devModel = devParts[devParts.length - 1]
         
         if (devProvider === litellmProvider && devModel === litellmModel) {
           return value
