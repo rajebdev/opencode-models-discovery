@@ -173,6 +173,9 @@ export async function enhanceConfig(
   logger: PluginLogger
 ): Promise<void> {
   try {
+    const { VERSION } = await import('../version.js')
+    logger.info('Plugin initialized', { version: VERSION })
+    
     const modelsDevCache = await fetchModelsDevData()
     logger.info('Loaded models.dev data', {
       count: modelsDevCache.size
