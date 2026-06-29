@@ -72,7 +72,8 @@ function createReasoningVariants(info: LiteLLMModelInfo): Record<string, any> | 
 }
 
 function applyLiteLLMModelInfo(
-  modelConfig: any, 
+  modelConfig: any,
+  modelId: string,
   entry: LiteLLMModelInfoEntry | undefined,
   modelsDevCache?: Map<string, ModelsDevModel>
 ): void {
@@ -100,7 +101,7 @@ function applyLiteLLMModelInfo(
 
   let modelsDevData: ModelsDevModel | undefined
   if (modelsDevCache) {
-    modelsDevData = lookupModelsDevData(modelConfig.id, modelsDevCache)
+    modelsDevData = lookupModelsDevData(modelId, modelsDevCache)
   }
 
   if ((!hasUsableNumber(contextLimit) || !hasUsableNumber(outputLimit)) && modelsDevData?.limit) {
@@ -198,7 +199,8 @@ export function createLiteLLMModelInfoEnricher(
     },
     applyModelInfo(modelConfig: any, modelId: string): void {
       applyLiteLLMModelInfo(
-        modelConfig, 
+        modelConfig,
+        modelId,
         getModelInfo(modelInfoById, modelId),
         options.modelsDevCache
       )
