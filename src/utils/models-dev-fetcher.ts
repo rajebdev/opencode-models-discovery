@@ -97,13 +97,15 @@ export function lookupModelsDevData(
   
   // Level 2: Provider + Model match
   if (litellmProvider) {
+    const litellmModelNormalized = litellmModel.replace(/\b(\d+)\.(\d+)\b/g, '$1-$2')
+    
     for (const [key, value] of cache.entries()) {
       const devParts = key.split('/')
       if (devParts.length >= 2) {
         const devProvider = devParts[devParts.length - 2]
         const devModel = devParts[devParts.length - 1]
         
-        if (devProvider === litellmProvider && devModel === litellmModel) {
+        if (devProvider === litellmProvider && (devModel === litellmModel || devModel === litellmModelNormalized)) {
           return value
         }
       }
