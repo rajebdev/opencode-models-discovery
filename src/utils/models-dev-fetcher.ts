@@ -112,11 +112,12 @@ export function lookupModelsDevData(
   
   // Level 3: Model name only (ignore provider)
   const modelNameLower = litellmModel.toLowerCase()
+  const modelNameNormalized = modelNameLower.replace(/\./g, '-')
   
   for (const [key, value] of cache.entries()) {
     const devModel = key.split('/').pop()!.toLowerCase()
     
-    if (modelNameLower === devModel) {
+    if (modelNameLower === devModel || modelNameNormalized === devModel) {
       return value
     }
   }
