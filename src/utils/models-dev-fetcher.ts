@@ -121,14 +121,16 @@ export function lookupModelsDevData(
     }
   }
   
-  // Level 3.5: Normalize dots to dashes for version numbers
+  // Level 3.5: Normalize version dots to dashes
   if (modelNameLower.includes('.')) {
-    const modelNameNormalized = modelNameLower.replace(/\./g, '-')
-    for (const [key, value] of cache.entries()) {
-      const devModel = key.split('/').pop()!.toLowerCase()
-      
-      if (modelNameNormalized === devModel) {
-        return value
+    const modelNameNormalized = modelNameLower.replace(/\b(\d+)\.(\d+)\b/g, '$1-$2')
+    if (modelNameNormalized !== modelNameLower) {
+      for (const [key, value] of cache.entries()) {
+        const devModel = key.split('/').pop()!.toLowerCase()
+        
+        if (modelNameNormalized === devModel) {
+          return value
+        }
       }
     }
   }
@@ -136,7 +138,7 @@ export function lookupModelsDevData(
   // Level 4: Prefix-based matching with score
   let bestMatch: ModelsDevModel | undefined
   let bestScore = 0
-  const modelNameForScoring = modelNameLower.includes('.') ? modelNameLower.replace(/\./g, '-') : modelNameLower
+  const modelNameForScoring = modelNameLower.includes('.') ? modelNameLower.replace(/\b(\d+)\.(\d+)\b/g, '$1-$2') : modelNameLower
   
   for (const [key, value] of cache.entries()) {
     const devModel = key.split('/').pop()!.toLowerCase()
