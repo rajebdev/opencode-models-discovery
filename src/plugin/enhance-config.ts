@@ -318,6 +318,10 @@ export async function enhanceConfig(
             if (modelsDevData.structured_output !== undefined) modelConfig.structured_output = modelsDevData.structured_output
             if (modelsDevData.modalities !== undefined) modelConfig.modalities = modelsDevData.modalities
           }
+          
+          if (modelConfig.reasoning === undefined && /-thinking|-reasoner|reasoning/i.test(model.id)) {
+            modelConfig.reasoning = true
+          }
 
           discoveredModels[modelKey] = modelConfig
         }
