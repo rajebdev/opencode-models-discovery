@@ -127,6 +127,9 @@ function applyLiteLLMModelInfo(
       modelConfig.reasoning = true
     } else if (modelsDevData?.reasoning !== undefined) {
       modelConfig.reasoning = modelsDevData.reasoning
+      if (typeof console !== 'undefined' && modelId.includes('cmc/deepseek')) {
+        console.log(`[DEBUG] ${modelId}: fallback reasoning=${modelsDevData.reasoning} from models.dev`)
+      }
     }
 
     const variants = createReasoningVariants(info)
